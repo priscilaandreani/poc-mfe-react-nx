@@ -2,8 +2,9 @@ import { ModuleFederationConfig } from '@nx/webpack';
 
 const config: ModuleFederationConfig = {
   name: 'product',
+  remotes: ['host'],
   exposes: {
-    './Product': './src/remote-entry.ts',
+    './Module': './src/remote-entry.ts',
   },
 };
 
