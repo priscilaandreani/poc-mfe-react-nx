@@ -86,7 +86,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/dist/apps/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/host/jest.config.js",
+        "jestConfig": "apps/host/jest.config.ts",
         "passWithNoTests": true
       }
     }
