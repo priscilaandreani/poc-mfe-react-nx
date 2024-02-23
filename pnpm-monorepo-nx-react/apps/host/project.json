@@ -51,7 +51,8 @@
       "options": {
         "port": 4200,
         "hmr": true,
-        "buildTarget": "host:build"
+        "buildTarget": "host:build",
+        "devRemotes": ["product"]
       },
       "configurations": {
         "development": {
