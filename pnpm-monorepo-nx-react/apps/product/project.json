@@ -3,6 +3,92 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/product/src",
   "projectType": "application",
-  "targets": {},
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/product",
+        "index": "apps/product/src/index.html",
+        "baseHref": "/",
+        "main": "apps/product/src/main.tsx",
+        "tsConfig": "apps/product/tsconfig.app.json",
+        "assets": ["apps/product/src/favicon.ico", "apps/product/src/assets"],
+        "styles": ["apps/product/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "apps/product/webpack.config.ts"
+      },
+      "configurations": {
+        "devolopment": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true,
+          "namedChunks": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/product/src/environments/environment.ts",
+              "with": "apps/product/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/product/webpack.config.ts"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/react:module-federation-dev-server",
+      "defaultConfiguration": "devolopment",
+      "options": {
+        "port": 4201,
+        "hmr": true,
+        "buildTarget": "product:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "product:build:development"
+        },
+        "production": {
+          "buildTarget": "product:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "server-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "product:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "product:build:development"
+        },
+        "production": {
+          "buildTarget": "product:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/dist/apps/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/product/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
   "tags": []
 }
