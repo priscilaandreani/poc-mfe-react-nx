@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "product/Module": ["apps/product/src/remote-entry.ts"]
+      "product/Module": ["apps/product/src/remote-entry.ts"],
+      "cart/Module": ["apps/cart/src/remote-entry.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,24 +1,24 @@
 {
-  "name": "host",
+  "name": "cart",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/host/src",
+  "sourceRoot": "apps/cart/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
+      "defaultConfiguration": "development",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist-host",
-        "index": "apps/host/src/index.html",
+        "outputPath": "dist-cart",
+        "index": "apps/cart/src/index.html",
         "baseHref": "/",
-        "main": "apps/host/src/main.tsx",
-        "tsConfig": "apps/host/tsconfig.app.json",
-        "assets": ["apps/host/src/favicon.ico", "apps/host/src/assets"],
-        "styles": ["apps/host/src/styles.css"],
+        "main": "apps/cart/src/main.tsx",
+        "tsConfig": "apps/cart/tsconfig.app.json",
+        "assets": ["apps/cart/src/favicon.ico", "apps/cart/src/assets"],
+        "styles": ["apps/cart/src/styles.css"],
         "scripts": [],
-        "webpackConfig": "apps/host/webpack.config.ts"
+        "webpackConfig": "apps/cart/webpack.config.ts"
       },
       "configurations": {
         "devolopment": {
@@ -31,8 +31,8 @@
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/host/src/environments/environment.ts",
-              "with": "apps/host/src/environments/environment.prod.ts"
+              "replace": "apps/cart/src/environments/environment.ts",
+              "with": "apps/cart/src/environments/environment.prod.ts"
             }
           ],
           "optimization": true,
@@ -40,8 +40,7 @@
           "sourceMap": false,
           "namedChunks": false,
           "extractLicenses": true,
-          "vendorChunk": false,
-          "webpackConfig": "apps/host/webpack.config.prod.ts"
+          "vendorChunk": false
         }
       }
     },
@@ -49,17 +48,17 @@
       "executor": "@nx/react:module-federation-dev-server",
       "defaultConfiguration": "devolopment",
       "options": {
-        "port": 4200,
+        "port": 4202,
         "hmr": true,
-        "buildTarget": "host:build",
-        "devRemotes": ["product", "cart"]
+        "buildTarget": "cart:build",
+        "devRemotes": ["product"]
       },
       "configurations": {
         "development": {
-          "buildTarget": "host:build:development"
+          "buildTarget": "cart:build:development"
         },
         "production": {
-          "buildTarget": "host:build:production",
+          "buildTarget": "cart:build:production",
           "hmr": false
         }
       }
@@ -71,14 +70,14 @@
       "executor": "@nx/web:file-server",
       "defaultConfiguration": "production",
       "options": {
-        "buildTarget": "host:build"
+        "buildTarget": "cart:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "host:build:development"
+          "buildTarget": "cart:build:development"
         },
         "production": {
-          "buildTarget": "host:build:production"
+          "buildTarget": "cart:build:production"
         }
       }
     },
@@ -86,11 +85,10 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/dist/apps/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/host/jest.config.ts",
+        "jestConfig": "apps/cart/jest.config.ts",
         "passWithNoTests": true
       }
     }
   },
-  "tags": [],
-  "implicitDependencies": ["product"]
+  "tags": []
 }
