@@ -12,4 +12,9 @@ describe('App', () => {
     const { getByText } = render(<App />);
     expect(getByText(/Welcome host/gi)).toBeTruthy();
   });
+
+  it('should import product correctly', () => {
+    const { getByText } = render(<App />);
+    expect(getByText(/Welcome product/gi)).toBeTruthy();
+  });
 });
