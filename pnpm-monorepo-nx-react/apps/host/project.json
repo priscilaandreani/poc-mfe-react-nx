@@ -21,7 +21,7 @@
         "webpackConfig": "apps/host/webpack.config.ts"
       },
       "configurations": {
-        "devolopment": {
+        "development": {
           "extractLicenses": false,
           "optimization": false,
           "sourceMap": true,
@@ -47,7 +47,7 @@
     },
     "serve": {
       "executor": "@nx/react:module-federation-dev-server",
-      "defaultConfiguration": "devolopment",
+      "defaultConfiguration": "development",
       "options": {
         "port": 4200,
         "hmr": true,
