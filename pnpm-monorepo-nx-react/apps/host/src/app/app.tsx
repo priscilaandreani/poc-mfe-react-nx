@@ -1,8 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-
 import { Suspense, lazy } from 'react';
 import NxWelcome from './nx-welcome';
 
+// build time remote import
 const Product = lazy(() => import('product/Module'));
 
 export function App() {
